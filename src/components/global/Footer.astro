@@ -1,0 +1,41 @@
+---
+import { business } from "@data/business";
+import DC7Wordmark from "./DC7Wordmark.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__grid">
+    <div class="site-footer__brand">
+      <DC7Wordmark />
+      <span>SPORTS PERFORMANCE</span>
+    </div>
+
+    <nav aria-label="Navigacija u footeru" class="site-footer__nav">
+      <span>Navigacija</span>
+      {business.navigation.slice(1).map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="site-footer__contact">
+      <span>Kontakt</span>
+      <a href={business.instagramUrl} target="_blank" rel="noreferrer">
+        Instagram<br />
+        {business.instagramHandle} <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="site-footer__location">
+      <span>Lokacija</span>
+      <strong>{business.city}, {business.country}</strong>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <span>DC7 PERFORMANCE / DEJAN NIKOLIĆ</span>
+    <span>© {year}</span>
+    <span>Sva prava zadržana.</span>
+  </div>
+</footer>

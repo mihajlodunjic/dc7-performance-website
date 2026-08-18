@@ -1,0 +1,19 @@
+---
+import { publishedCaseStudies } from "@data/caseStudies";
+---
+
+{publishedCaseStudies.length > 0 && (
+  <section class="case-study-strip" aria-labelledby="case-study-title">
+    <p class="section-index">VERIFIKOVANI PRIMERI</p>
+    <h2 id="case-study-title">Rad. Period. Promena.</h2>
+    <div class="case-study-strip__items">
+      {publishedCaseStudies.map((study) => (
+        <article>
+          <span>{study.sport}</span>
+          <h3>{study.athleteDisplayName}</h3>
+          <p>{study.goal}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

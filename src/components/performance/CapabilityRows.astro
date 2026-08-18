@@ -1,0 +1,23 @@
+---
+interface Capability {
+  index: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  items: readonly Capability[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="capability-rows">
+  {items.map((item) => (
+    <li class="capability-row">
+      <span class="capability-row__index">{item.index}</span>
+      <span class="capability-row__title">{item.title}</span>
+      <p>{item.text}</p>
+    </li>
+  ))}
+</ol>

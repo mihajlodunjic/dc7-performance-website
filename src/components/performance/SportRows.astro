@@ -1,0 +1,21 @@
+---
+interface SportRow {
+  sport: string;
+  text: string;
+}
+
+interface Props {
+  items: readonly SportRow[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="sport-rows">
+  {items.map((item) => (
+    <div class="sport-row">
+      <span>{item.sport}</span>
+      <p>{item.text}</p>
+    </div>
+  ))}
+</div>

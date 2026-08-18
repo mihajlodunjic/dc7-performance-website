@@ -1,0 +1,44 @@
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 360ms ease, transform 360ms ease;
+}
+
+.dissolve-image {
+  clip-path: inset(0 0 0 0);
+}
+
+[data-reveal].is-visible .dissolve-image,
+.dissolve-image.is-visible {
+  animation: image-clip 420ms ease both;
+}
+
+@keyframes image-clip {
+  from {
+    clip-path: inset(0 8% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

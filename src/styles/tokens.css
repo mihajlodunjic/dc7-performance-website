@@ -1,0 +1,23 @@
+:root {
+  --bg-primary: #0e0e13;
+  --bg-secondary: #16171b;
+  --bg-elevated: #1d1f24;
+  --text-primary: #f1f0ec;
+  --text-secondary: #a6a7ac;
+  --text-muted: #74767e;
+  --accent-primary: #7185a8;
+  --accent-hover: #8ea1c1;
+  --border: #2a2c32;
+  --border-strong: #3a3d45;
+  --success: #8fa98b;
+  --error: #c98383;
+
+  --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --container-max: 1440px;
+  --page-x: clamp(20px, 4vw, 80px);
+  --section-y: clamp(88px, 12vw, 180px);
+  --header-h: 74px;
+}

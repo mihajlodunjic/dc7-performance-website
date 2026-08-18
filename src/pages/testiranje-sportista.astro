@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/page/PageHero.astro";
+import SectionIndex from "@components/global/SectionIndex.astro";
+import { business } from "@data/business";
+
+const breadcrumbs = [{ name: "Testiranje", href: "/testiranje-sportista/" }];
+---
+
+<BaseLayout
+  title="Testiranje sportista Beograd | DC7 Performance"
+  description="Testiranje i praćenje fizičkih sposobnosti sportista kao osnova za individualnu kondicionu pripremu i jasnije određivanje prioriteta treninga."
+  path="/testiranje-sportista/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    eyebrow="DC7 / TESTIRANJE"
+    title="Pre treninga treba znati šta se menja."
+    intro="Testiranje služi da se trenutne sposobnosti sportiste sagledaju jasnije, odrede prioriteti i kasnije proveri da li proces ide u željenom smeru."
+    ctaLabel="Pitaj za testiranje"
+    ctaHref={business.instagramUrl}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="content-section content-section--secondary" aria-labelledby="testing-why">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="01 / POLAZNA TAČKA" /></div>
+      <div class="content-section__body">
+        <h2 id="testing-why">Osećaj je koristan. Podatak daje dodatni kontekst.</h2>
+        <p><strong>Sportista i trener često mogu da prepoznaju problem kroz trening i takmičenje, ali strukturirana procena pomaže da se taj problem preciznije definiše.</strong></p>
+        <p><strong>Kada postoji jasna polazna tačka, lakše je odlučiti koje sposobnosti imaju prioritet i kako pratiti njihov razvoj.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="testing-questions">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="02 / PITANJA" /></div>
+      <div class="content-section__body">
+        <h2 id="testing-questions">Tri pitanja pre sledećeg koraka.</h2>
+        <ol class="question-list">
+          <li>Gde je sportista sada?</li>
+          <li>Koje sposobnosti trenutno najviše ograničavaju performansu?</li>
+          <li>Da li se posle perioda treninga stanje zaista promenilo?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section--secondary" aria-labelledby="tracking">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="03 / PRAĆENJE" /></div>
+      <div class="content-section__body">
+        <h2 id="tracking">Napredak ima smisla samo u kontekstu sporta.</h2>
+        <p><strong>Poboljšanje jedne izolovane vrednosti nije dovoljno ako se ne uklapa u širu sliku sportiste. Zato se rezultat procene koristi zajedno sa načinom na koji sportista trenira, opterećenjem koje podnosi, oporavkom i zahtevima takmičenja.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="testing-cta">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="04 / KONTAKT" /></div>
+      <div class="content-section__body cta-panel">
+        <h2 id="testing-cta">Želiš da proveriš šta trenutno treba da bude prioritet?</h2>
+        <p>Pošalji poruku i napiši kojim sportom se baviš, uzrast i šta trenutno želiš da unaprediš.</p>
+        <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">Pošalji DM</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

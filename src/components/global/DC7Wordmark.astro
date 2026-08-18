@@ -1,0 +1,23 @@
+---
+interface Props {
+  compact?: boolean;
+  showName?: boolean;
+  class?: string;
+}
+
+const { compact = false, showName = true, class: className = "" } = Astro.props;
+---
+
+<a
+  href="/"
+  class:list={["wordmark", compact && "wordmark--compact", className]}
+  aria-label="DC7 Performance — Dejan Nikolić"
+>
+  <span class="wordmark__mark">DC<span class="wordmark__seven">7</span></span>
+  {showName && !compact && (
+    <>
+      <span class="wordmark__divider" aria-hidden="true"></span>
+      <span class="wordmark__name">DEJAN NIKOLIĆ</span>
+    </>
+  )}
+</a>

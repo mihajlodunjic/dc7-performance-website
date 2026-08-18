@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/page/PageHero.astro";
+import SectionIndex from "@components/global/SectionIndex.astro";
+import { business } from "@data/business";
+import medicineImage from "../assets/images/dejan/dejan-medicine-ball.jpeg";
+
+const breadcrumbs = [{ name: "Kontakt", href: "/kontakt/" }];
+---
+
+<BaseLayout
+  title="Kontakt | DC7 Performance — Dejan Nikolić"
+  description="Kontaktiraj Dejana Nikolića za razgovor o individualnoj kondicionoj pripremi, testiranju i fizičkom razvoju sportiste."
+  path="/kontakt/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    eyebrow="DC7 / KONTAKT"
+    title="Napiši šta želiš da promeniš u svojoj igri."
+    intro="Najkorisnije je da u poruci napišeš kojim sportom se baviš, trenutni nivo, uzrast i fizičku sposobnost koju želiš da unaprediš."
+    ctaLabel="Pošalji DM na Instagramu"
+    ctaHref={business.instagramUrl}
+    meta={business.instagramHandle}
+    breadcrumbs={breadcrumbs}
+    image={medicineImage}
+    imageAlt="Dejan Nikolić tokom vežbe sa medicinkom"
+    imagePosition="50% 42%"
+    imageMobilePosition="50% 36%"
+  />
+
+  <section class="content-section content-section--secondary" aria-labelledby="what-to-send">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="01 / PORUKA" /></div>
+      <div class="content-section__body">
+        <h2 id="what-to-send">Dovoljno je nekoliko informacija.</h2>
+        <ul class="info-list">
+          <li>Sport kojim se baviš</li>
+          <li>Uzrast</li>
+          <li>Trenutni nivo takmičenja</li>
+          <li>Šta trenutno želiš da unaprediš</li>
+          <li>Da li si trenutno u sezoni ili van sezone</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="location">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="02 / LOKACIJA" /></div>
+      <div class="content-section__body cta-panel">
+        <h2 id="location">Rad u Beogradu.</h2>
+        <p><strong>Dejan profesionalno radi u Beogradu, uključujući angažman u Player Zone Tennis Academy. Tačnu lokaciju i format individualnog DC7 rada dogovori direktno prilikom konsultacije.</strong></p>
+        <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">Pošalji DM</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,147 @@
+---
+import { business } from "@data/business";
+import { normalizePath } from "@utils/site";
+import DC7Wordmark from "./DC7Wordmark.astro";
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isActive = (href: string) => {
+  const normalized = normalizePath(href);
+  return normalized === "/" ? currentPath === "/" : currentPath.startsWith(normalized);
+};
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <DC7Wordmark class="site-header__brand" />
+
+    <nav class="site-header__nav" aria-label="Primarna navigacija">
+      {business.navigation.slice(1).map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a class="site-header__cta" href={business.instagramUrl} target="_blank" rel="noreferrer">
+      Pošalji DM <span aria-hidden="true">↗</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Otvori navigaciju"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+  <div class="mobile-menu__top">
+    <span class="mobile-menu__mark">DC7</span>
+    <span class="mobile-menu__coach">DEJAN NIKOLIĆ / PERFORMANCE COACH</span>
+  </div>
+
+  <nav class="mobile-menu__nav" aria-label="Mobilna navigacija">
+    {business.navigation.map((item) => (
+      <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+        <span>{item.label}</span>
+        <span aria-hidden="true">0{business.navigation.indexOf(item) + 1}</span>
+      </a>
+    ))}
+  </nav>
+
+  <div class="mobile-menu__contact">
+    <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">
+      Pošalji DM <span aria-hidden="true">↗</span>
+    </a>
+    <span>{business.instagramHandle}</span>
+  </div>
+</div>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const focusableSelector = "a[href], button:not([disabled])";
+  let previouslyFocused: Element | null = null;
+  let closeTimer = 0;
+
+  function setHeaderState() {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 24);
+  }
+
+  function getFocusable() {
+    return menu ? Array.from(menu.querySelectorAll<HTMLElement>(focusableSelector)) : [];
+  }
+
+  function openMenu() {
+    if (!menu || !toggle) return;
+    window.clearTimeout(closeTimer);
+    previouslyFocused = document.activeElement;
+    menu.hidden = false;
+    requestAnimationFrame(() => menu.classList.add("is-open"));
+    toggle.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Zatvori navigaciju");
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
+    const firstLink = getFocusable()[0];
+    if (firstLink) firstLink.focus({ preventScroll: true });
+  }
+
+  function closeMenu(restoreFocus = true) {
+    if (!menu || !toggle) return;
+    menu.classList.remove("is-open");
+    toggle.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Otvori navigaciju");
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+    closeTimer = window.setTimeout(() => {
+      menu.hidden = true;
+    }, 180);
+    if (restoreFocus && previouslyFocused instanceof HTMLElement) {
+      previouslyFocused.focus({ preventScroll: true });
+    }
+  }
+
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    expanded ? closeMenu() : openMenu();
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeMenu(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!menu || menu.hidden) return;
+    if (event.key === "Escape") {
+      closeMenu();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = getFocusable();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+</script>

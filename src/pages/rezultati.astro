@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/page/PageHero.astro";
+import SectionIndex from "@components/global/SectionIndex.astro";
+import CaseStudyStrip from "@components/performance/CaseStudyStrip.astro";
+import { business } from "@data/business";
+import { publishedCaseStudies } from "@data/caseStudies";
+
+const breadcrumbs = [{ name: "Rezultati", href: "/rezultati/" }];
+---
+
+<BaseLayout
+  title="Rezultati i napredak sportista | DC7 Performance"
+  description="Kako DC7 Performance posmatra i prati napredak sportista kroz fizičke sposobnosti, individualne prioritete, trening i ponovnu procenu."
+  path="/rezultati/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    eyebrow="DC7 / NAPREDAK"
+    title="Promena koja treba da se prenese na teren."
+    intro="Cilj kondicione pripreme nije da sportista izgleda kao da trenira. Cilj je da razvijene fizičke sposobnosti može da koristi kada sport od njega to zahteva."
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="content-section content-section--secondary" aria-labelledby="result-meaning">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="01 / REZULTAT" /></div>
+      <div class="content-section__body">
+        <h2 id="result-meaning">Jedna brojka nije cela priča.</h2>
+        <p><strong>Napredak može da znači brži prvi korak, bolju sposobnost kočenja i ponovnog ubrzanja, više snage, kvalitetniju kontrolu pokreta, veću stabilnost ili sposobnost da se intenzitet održava duže.</strong></p>
+        <p><strong>Koja promena je najvažnija zavisi od sportiste i njegovog sporta.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="result-tracking">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="02 / PROCES" /></div>
+      <div class="content-section__body">
+        <h2 id="result-tracking">Rezultat se poredi sa polaznom tačkom.</h2>
+        <p><strong>Zato su procena, praćenje i ponovna procena deo istog procesa. Kada postoje jasne početne informacije, lakše je proceniti šta je trening zaista promenio i šta treba da bude sledeći prioritet.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  {publishedCaseStudies.length > 0 && <CaseStudyStrip />}
+
+  <section class="content-section content-section--secondary" aria-labelledby="result-cta">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="03 / CILJ" /></div>
+      <div class="content-section__body cta-panel">
+        <h2 id="result-cta">Tvoj cilj određuje šta treba da merimo i treniramo.</h2>
+        <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">Razgovaraj o svom cilju</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

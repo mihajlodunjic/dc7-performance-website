@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="404 / Off route | DC7 Performance"
+  description="Stranica koju tražiš ne postoji ili je promenjena."
+  path="/404/"
+  noindex
+>
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <div class="page-hero__copy" data-reveal>
+        <p class="eyebrow">404 / OFF ROUTE</p>
+        <h1>Ovaj pravac ne vodi dalje.</h1>
+        <p class="lead">Stranica koju tražiš ne postoji ili je promenjena.</p>
+        <div class="home-hero__actions">
+          <a class="button button--primary" href="/">Vrati se na početnu</a>
+          <a class="text-link" href="/kontakt/">Otvori kontakt</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

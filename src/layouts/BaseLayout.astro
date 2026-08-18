@@ -1,0 +1,155 @@
+---
+import "@fontsource/barlow-condensed/500.css";
+import "@fontsource/barlow-condensed/600.css";
+import "@fontsource/barlow-condensed/700.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@styles/tokens.css";
+import "@styles/reset.css";
+import "@styles/base.css";
+import "@styles/components.css";
+import "@styles/motion.css";
+
+import Header from "@components/global/Header.astro";
+import Footer from "@components/global/Footer.astro";
+import { business } from "@data/business";
+import { absoluteUrl, normalizePath } from "@utils/site";
+
+interface Breadcrumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  noindex?: boolean;
+  breadcrumbs?: Breadcrumb[];
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  ogTitle = "DC7 Performance — Dejan Nikolić",
+  ogDescription = "Kondiciona priprema sportista kroz individualni razvoj fizičkih sposobnosti, testiranje i praćenje napretka.",
+  noindex = false,
+  breadcrumbs = []
+} = Astro.props;
+
+const canonicalPath = normalizePath(path);
+const canonical = absoluteUrl(canonicalPath);
+const ogImage = absoluteUrl("/social/og-default.jpg");
+
+const graph: Array<Record<string, unknown>> = [
+  {
+    "@type": "Person",
+    "@id": absoluteUrl("/#dejan-nikolic"),
+    name: business.coachName,
+    jobTitle: "Kondicioni trener",
+    url: absoluteUrl("/"),
+    image: absoluteUrl("/social/og-default.jpg"),
+    sameAs: [business.instagramUrl],
+    affiliation: {
+      "@type": "Organization",
+      name: business.affiliation
+    }
+  },
+  {
+    "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
+    name: business.brand,
+    url: absoluteUrl("/"),
+    sameAs: [business.instagramUrl]
+  },
+  {
+    "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
+    name: business.brand,
+    url: absoluteUrl("/")
+  }
+];
+
+if (breadcrumbs.length > 0) {
+  graph.push({
+    "@type": "BreadcrumbList",
+    "@id": `${canonical}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Početna",
+        item: absoluteUrl("/")
+      },
+      ...breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: crumb.name,
+        item: absoluteUrl(crumb.href)
+      }))
+    ]
+  });
+}
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": graph
+};
+---
+
+<!doctype html>
+<html lang="sr-Latn-RS">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0E0E13" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:site_name" content="DC7 Performance" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Dejan Nikolić tokom treninga u tamnom trening prostoru" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Preskoči na sadržaj</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  class?: string;
+  fade?: "left-bottom" | "right-bottom" | "both-bottom" | "none";
+  aspect?: string;
+  mobileAspect?: string;
+  position?: string;
+  mobilePosition?: string;
+  widths?: number[];
+  sizes?: string;
+  loading?: "eager" | "lazy";
+  fetchpriority?: "high" | "low" | "auto";
+}
+
+const {
+  src,
+  alt,
+  class: className = "",
+  fade = "left-bottom",
+  aspect = "4 / 5",
+  mobileAspect = aspect,
+  position = "50% 50%",
+  mobilePosition = position,
+  widths = [360, 540, 720, 960, 1200, 1440],
+  sizes = "(max-width: 720px) 100vw, 50vw",
+  loading = "lazy",
+  fetchpriority = "auto"
+} = Astro.props;
+
+const fallbackWidth = Math.max(...widths);
+const fallbackHeight = Math.round(fallbackWidth * (src.height / src.width));
+---
+
+<figure
+  class:list={["dissolve-image", `dissolve-image--${fade}`, className]}
+  style={`--image-aspect:${aspect};--image-mobile-aspect:${mobileAspect};--object-position:${position};--object-position-mobile:${mobilePosition};`}
+>
+  <Picture
+    src={src}
+    formats={["avif", "webp"]}
+    widths={widths}
+    width={fallbackWidth}
+    height={fallbackHeight}
+    sizes={sizes}
+    alt={alt}
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+  />
+</figure>

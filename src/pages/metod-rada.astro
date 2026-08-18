@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/page/PageHero.astro";
+import SectionIndex from "@components/global/SectionIndex.astro";
+import CapabilityRows from "@components/performance/CapabilityRows.astro";
+import { business } from "@data/business";
+import { methodAbilities } from "@data/performanceAreas";
+
+const breadcrumbs = [{ name: "Metod rada", href: "/metod-rada/" }];
+---
+
+<BaseLayout
+  title="Metod rada | DC7 Performance — Dejan Nikolić"
+  description="Kako Dejan Nikolić pristupa individualnoj kondicionoj pripremi sportista: procena, sport-specifični prioriteti, trening, praćenje i oporavak."
+  path="/metod-rada/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    eyebrow="DC7 / METOD RADA"
+    title="Trening mora da reši pravi problem."
+    intro="Dve osobe mogu da se bave istim sportom, a da im u istom trenutku nije potreban isti trening. Program mora da uzme u obzir sport, nivo, slabosti, period sezone, postojeće opterećenje i oporavak."
+    ctaLabel="Pošalji DM"
+    ctaHref={business.instagramUrl}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="content-section content-section--secondary" aria-labelledby="sport-demand">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="01 / ZAHTEV SPORTA" /></div>
+      <div class="content-section__body">
+        <h2 id="sport-demand">Prvo razumeti šta sport traži.</h2>
+        <p><strong>Brzina u fudbalu, košarci i tenisu ne izgleda isto. Ni promena pravca, kontakt, trajanje akcije i period odmora nisu isti. Kondiciona priprema zato ne treba da bude kopija programa iz drugog sporta.</strong></p>
+        <p><strong>Cilj je da se opšte fizičke sposobnosti razvijaju na način koji sportisti pomaže tamo gde ih zaista koristi.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="athlete-specific">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="02 / SPORTISTA" /></div>
+      <div class="content-section__body">
+        <h2 id="athlete-specific">Isti sport ne znači isti program.</h2>
+        <p><strong>Jedan sportista može da ima dovoljno maksimalne snage, ali da mu nedostaje sposobnost da je brzo primeni. Drugi može da bude brz na prvih nekoliko koraka, ali da teško održava visok intenzitet. Trećem je prioritet kontrola tela pri kočenju i promeni pravca.</strong></p>
+        <p><strong>Zato program prati pojedinca, a ne samo naziv sporta.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section--secondary" aria-labelledby="physical-development">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="03 / FIZIČKI RAZVOJ" /></div>
+      <div class="content-section__body">
+        <h2 id="physical-development">Razvijati ono što sportista mora da koristi.</h2>
+      </div>
+      <div class="development__rows">
+        <CapabilityRows items={methodAbilities} />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="recovery">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="04 / OPORAVAK" /></div>
+      <div class="content-section__body">
+        <h2 id="recovery">Trening koji uništi sledeći trening nije automatski dobar trening.</h2>
+        <p><strong>Opterećenje treba da bude dovoljno veliko da izazove adaptaciju, ali i dovoljno precizno dozirano da sportista može kvalitetno da nastavi proces.</strong></p>
+        <p><strong>Zato se trening i oporavak ne posmatraju kao dva odvojena problema.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section--secondary" aria-labelledby="off-season">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="05 / OFF-SEASON" /></div>
+      <div class="content-section__body">
+        <h2 id="off-season">Period za razvoj, ne samo održavanje forme.</h2>
+        <p><strong>Van takmičarske sezone postoji više prostora da se ciljano radi na snazi, brzini, eksplozivnosti, mobilnosti, stabilnosti i fizičkim slabostima koje tokom sezone često ostaju u drugom planu.</strong></p>
+        <p><strong>Cilj je da sportista u novu fazu priprema ne uđe samo odmoran, već fizički spremniji za zahteve koji ga čekaju.</strong></p>
+        <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">Razgovaraj o pripremi</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

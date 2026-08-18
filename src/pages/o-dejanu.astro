@@ -1,0 +1,81 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/page/PageHero.astro";
+import SectionIndex from "@components/global/SectionIndex.astro";
+import { business } from "@data/business";
+import kettlebellImage from "../assets/images/dejan/dejan-kettlebell-profile.jpeg";
+
+const breadcrumbs = [{ name: "O Dejanu", href: "/o-dejanu/" }];
+---
+
+<BaseLayout
+  title="Dejan Nikolić — kondicioni trener | DC7 Performance"
+  description="Dejan Nikolić je diplomirani profesor fizičkog vaspitanja, kondicioni trener i bivši profesionalni košarkaš koji radi na fizičkoj pripremi sportista."
+  path="/o-dejanu/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    eyebrow="DEJAN NIKOLIĆ / PERFORMANCE COACH"
+    title="Od takmičarskog sporta do razvoja drugih sportista."
+    intro="Dejan Nikolić je diplomirani profesor fizičkog vaspitanja, kondicioni trener i bivši profesionalni košarkaš."
+    breadcrumbs={breadcrumbs}
+    image={kettlebellImage}
+    imageAlt="Dejan Nikolić sa kettlebellom u trening prostoru"
+    imagePosition="52% 40%"
+    imageMobilePosition="50% 36%"
+  />
+
+  <section class="content-section content-section--secondary" aria-labelledby="sport-background">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="01 / SPORT" /></div>
+      <div class="content-section__body">
+        <h2 id="sport-background">Sport prvo iz perspektive igrača.</h2>
+        <p><strong>Pre nego što je profesionalni fokus prebacio na kondicionu pripremu, Dejan je prošao kroz košarku kao takmičar i kratko igrao profesionalno u Španiji.</strong></p>
+        <p><strong>To iskustvo daje praktičan kontekst radu sa sportistima — kako trening izgleda kada postoji raspored utakmica, pritisak rezultata, umor, oporavak i potreba da fizička priprema bude korisna u stvarnoj igri.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="education-work">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="02 / STRUKA" /></div>
+      <div class="content-section__body">
+        <h2 id="education-work">Formalno obrazovanje i Strength & Conditioning pristup.</h2>
+        <p><strong>Dejan je završio Fakultet sporta i fizičkog vaspitanja i dodatno se edukovao kroz Strength & Conditioning oblast.</strong></p>
+        <p><strong>Radi kao kondicioni trener u Player Zone Tennis Academy u Beogradu i kroz sopstveni rad pod nazivom DC7 PERFORMANCE razvija sportiste različitih sportova i nivoa.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section--secondary" aria-labelledby="athlete-experience">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="03 / PRAKSA" /></div>
+      <div class="content-section__body">
+        <h2 id="athlete-experience">Mladi sportisti, profesionalci i reprezentativci.</h2>
+        <p><strong>U dosadašnjem radu prisutni su mladi sportisti, profesionalni igrači i reprezentativci iz različitih sportova. Posebno iskustvo postoji u košarci i tenisu, ali princip rada ostaje isti: razumeti zahteve sporta i fizičke prioritete konkretnog sportiste.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="philosophy">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="04 / PRINCIP" /></div>
+      <div class="content-section__body">
+        <h2 id="philosophy">Sportista se razvija kao celina.</h2>
+        <p><strong>Snaga bez sposobnosti da se primeni brzo nije isto što i eksplozivnost. Brzina bez kontrole kočenja nije kompletan sportski pokret. Intenzivan trening bez oporavka nije dugoročan sistem.</strong></p>
+        <p><strong>Zato se brzina, snaga, eksplozivnost, koordinacija, stabilnost, izdržljivost i oporavak posmatraju kao delovi istog procesa.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section--secondary" aria-labelledby="about-cta">
+    <div class="content-section__grid" data-reveal>
+      <div class="content-section__index"><SectionIndex label="05 / KONTAKT" /></div>
+      <div class="content-section__body cta-panel">
+        <h2 id="about-cta">Imaš konkretan problem u svojoj pripremi?</h2>
+        <a class="button button--primary" href={business.instagramUrl} target="_blank" rel="noreferrer">Pošalji DM Dejanu</a>
+        <a class="text-link" href={business.instagramUrl} target="_blank" rel="noreferrer">Otvori {business.instagramHandle}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
