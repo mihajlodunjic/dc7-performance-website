@@ -8,14 +8,14 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="site-footer__grid">
     <div class="site-footer__brand">
-      <DC7Wordmark />
+      <DC7Wordmark disabled />
       <span>SPORTS PERFORMANCE</span>
     </div>
 
     <nav aria-label="Navigacija u footeru" class="site-footer__nav">
       <span>Navigacija</span>
       {business.navigation.slice(1).map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a aria-disabled="true">{item.label}</a>
       ))}
     </nav>
 

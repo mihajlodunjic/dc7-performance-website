@@ -13,11 +13,11 @@ const isActive = (href: string) => {
 
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
-    <DC7Wordmark class="site-header__brand" />
+    <DC7Wordmark class="site-header__brand" disabled />
 
     <nav class="site-header__nav" aria-label="Primarna navigacija">
       {business.navigation.slice(1).map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+        <a aria-current={isActive(item.href) ? "page" : undefined} aria-disabled="true">
           {item.label}
         </a>
       ))}
@@ -50,7 +50,7 @@ const isActive = (href: string) => {
 
   <nav class="mobile-menu__nav" aria-label="Mobilna navigacija">
     {business.navigation.map((item) => (
-      <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+      <a aria-current={isActive(item.href) ? "page" : undefined} aria-disabled="true">
         <span>{item.label}</span>
         <span aria-hidden="true">0{business.navigation.indexOf(item) + 1}</span>
       </a>
